@@ -23,4 +23,5 @@ export type ProductContextType = {
   deleteProduct: (productId: number) => void;
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  isLoading:boolean;
 };

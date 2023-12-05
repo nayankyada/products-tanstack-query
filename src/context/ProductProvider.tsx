@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { Product, ProductContextType } from "@/types/product";
 import { createContext } from "react";
+import { useGetProducts } from "@/hooks";
 
 /*
  * Created a context to store the products and the search query
@@ -20,6 +21,7 @@ export const ProductContext = createContext<ProductContextType>({
   deleteProduct: () => {},
   searchQuery: "",
   setSearchQuery: () => {},
+  isLoading: false,
 });
 
 function ProductProvider({ children }: React.PropsWithChildren<{}>) {
@@ -27,6 +29,25 @@ function ProductProvider({ children }: React.PropsWithChildren<{}>) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<string>("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const { data, isSuccess, isLoading } = useGetProducts();
+
+  useEffect(() => {
+    let products = JSON.parse(localStorage.getItem("products") || "[]");
+    if (products.length > 0) {
+      setProducts(products);
+      return;
+    }
+
+    if (products.length === 0 && data) {
+      setProducts(data);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
+
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products));
+  }, [products]);
 
   /*
    * Update the product in the products array
@@ -84,6 +105,7 @@ function ProductProvider({ children }: React.PropsWithChildren<{}>) {
     deleteProduct,
     searchQuery,
     setSearchQuery,
+    isLoading,
   };
 
   return (

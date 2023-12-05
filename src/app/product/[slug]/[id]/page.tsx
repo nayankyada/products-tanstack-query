@@ -15,6 +15,7 @@ import { Product } from "@/types/product";
 import { INITIAL_PRODUCT } from "@/utils/config";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import { Loader } from "@/app/(components)";
 
 /*
  * Product view page component
@@ -29,7 +30,8 @@ function ProductViewPage() {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setDeleteEditModal] = useState(false);
   const [editData, setEditData] = useState<Product>(INITIAL_PRODUCT);
-  const { updateProduct, products, deleteProduct } = useContext(ProductContext);
+  const { updateProduct, products, deleteProduct, isLoading } =
+    useContext(ProductContext);
 
   /**
    * Update the product when the mutation is successful
@@ -92,6 +94,10 @@ function ProductViewPage() {
       productId: Number(productId),
     });
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

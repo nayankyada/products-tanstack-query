@@ -13,19 +13,7 @@ import { useContext, useEffect } from "react";
  */
 
 export default function Home() {
-  const { data, isSuccess, isLoading } = useGetProducts();
-  const { setProducts, products } = useContext(ProductContext);
-
-  /*
-   * Update the products array when the data is fetched
-   * This is done to avoid unnecessary re-renders
-   */
-  useEffect(() => {
-    if (products.length === 0 && data) {
-      setProducts(data);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
+  const { products, isLoading } = useContext(ProductContext);
 
   // Show a loader while fetching the data
   if (isLoading) {

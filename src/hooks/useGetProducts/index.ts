@@ -18,11 +18,9 @@ const fetchProducts = async (): Promise<Product[]> => {
 };
 
 const useGetProducts = () => {
-  const { products } = useContext(ProductContext);
   return useQuery<Product[], Error>({
     queryKey: ["products"],
     queryFn: () => fetchProducts(),
-    enabled: products.length === 0,
   });
 };
 

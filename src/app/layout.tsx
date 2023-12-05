@@ -27,15 +27,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ProductProvider>
-          <QueryProvider>
+        <QueryProvider>
+          <ProductProvider>
             <main className="flex min-h-screen flex-col items-center justify-between w-full">
               <Header />
               {children}
               <Footer />
             </main>
-          </QueryProvider>
-        </ProductProvider>
+          </ProductProvider>
+        </QueryProvider>
       </body>
     </html>
   );
