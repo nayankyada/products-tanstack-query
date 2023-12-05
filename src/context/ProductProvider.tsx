@@ -12,6 +12,7 @@ import { useGetProducts } from "@/hooks";
  * The filtered products array is used to display the products
  * The search query is debounced to avoid unnecessary re-renders
  * The products are filtered based on the debounced search query
+ * The loading state is used to show a loader while fetching the data
  */
 
 export const ProductContext = createContext<ProductContextType>({
