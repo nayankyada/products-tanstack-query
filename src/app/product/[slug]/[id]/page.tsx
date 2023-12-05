@@ -80,6 +80,15 @@ function ProductViewPage() {
    * Update the product data handler
    */
   const updateProductHandler = () => {
+    if(editData?.price === 0) {
+      alert("Price can't be 0 because API is not allowing to update price to 0");
+      return;
+    }
+    if(editData?.stock === 0) {
+      alert("Stock can't be 0 because API is not allowing to update stock to 0");
+      return;
+    }
+
     updateProductMutation({
       productId: Number(productId),
       body: editData,
