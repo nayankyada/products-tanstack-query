@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { Product, ProductContextType } from "@/types/product";
 import { createContext } from "react";
 import { useGetProducts } from "@/hooks";

@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import { useGetProducts } from "@/hooks";
 import { Loader, ProductCard } from "./(components)";
 import { ProductContext } from "@/context/ProductProvider";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 /*
  * Home page component

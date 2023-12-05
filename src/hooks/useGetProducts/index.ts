@@ -4,10 +4,9 @@
   It is also used in the ProductList component to fetch products when the user clicks on listing page.
 */
 
-import { ProductContext } from "@/context/ProductProvider";
 import { Product } from "@/types/product";
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
+
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://dummyjson.com";
 
